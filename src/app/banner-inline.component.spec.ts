@@ -33,6 +33,10 @@ describe('BannerInlineComponent', () => {
     expect(el.textContent).toContain('Test Title');
   });
 
+  it('no title in the DOM until manually call detect changes', () => {
+    expect(el.textContent).toEqual('');
+  });
+
 });
 
 function resetTestBedToBaseState() {
