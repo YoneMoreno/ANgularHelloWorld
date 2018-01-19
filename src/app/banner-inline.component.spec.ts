@@ -1,25 +1,41 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { BannerInlineComponent } from './banner-inline.component';
+import {BannerInlineComponent} from './banner-inline.component';
+import {DebugElement} from "@angular/core";
+import {By} from "@angular/platform-browser";
+
 
 describe('BannerInlineComponent', () => {
   let component: BannerInlineComponent;
   let fixture: ComponentFixture<BannerInlineComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ BannerInlineComponent ]
-    })
-    .compileComponents();
-  }));
+  let de: DebugElement;
+  let el: HTMLElement;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BannerInlineComponent);
+    resetTestBedToBaseState();
+
+    fixture = createComponentFixtureWHichIsAHandleToGetAComponentInstanceAndADOMDebugElement(fixture);
+
     component = fixture.componentInstance;
-    fixture.detectChanges();
+
+    de = fixture.debugElement.query(By.css('h1'));
+    el = de.nativeElement;
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should display original title', () => {
+    fixture.detectChanges();
+    expect(el.textContent).toContain(component.title);
   });
+
 });
+
+function resetTestBedToBaseState() {
+  TestBed.configureTestingModule({
+    declarations: [BannerInlineComponent]
+  });
+}
+
+function createComponentFixtureWHichIsAHandleToGetAComponentInstanceAndADOMDebugElement(fixture: ComponentFixture<BannerInlineComponent>) {
+  fixture = TestBed.createComponent(BannerInlineComponent);
+  return fixture;
+}
