@@ -27,6 +27,12 @@ describe('BannerInlineComponent', () => {
     expect(el.textContent).toContain(component.title);
   });
 
+  it('should display a different test title', () => {
+    component.title = 'Test Title';
+    fixture.detectChanges();
+    expect(el.textContent).toContain('Test Title');
+  });
+
 });
 
 function resetTestBedToBaseState() {
