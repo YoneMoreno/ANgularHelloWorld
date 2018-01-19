@@ -1,18 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BannerInlineComponent } from './banner-inline.component';
 
 
-import { AppComponent } from './app.component';
+
 
 
 @NgModule({
   declarations: [
-    AppComponent
-  ],
+
+  BannerInlineComponent],
   imports: [
     BrowserModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [BannerInlineComponent]
 })
 export class AppModule { }
